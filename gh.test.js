@@ -1,4 +1,7 @@
 let page;
+beforeEach(async () => {
+  page = await browser.newPage();
+}, 30000);
 
 afterEach(() => {
   page.close();
@@ -6,7 +9,6 @@ afterEach(() => {
 
 describe("Github page tests", () => {
   beforeEach(async () => {
-    page = await browser.newPage();
     await page.goto("https://github.com/team");
   }, 30000);
   test("The h1 header content'", async () => {
@@ -33,7 +35,6 @@ describe("Github page tests", () => {
 });
 
 test("Sign in to GitHub header content'", async () => {
-  page = await browser.newPage();
   await page.goto("https://github.com/features/codespaces");  
   const getStarted = await page.$("body > div.logged-out.env-production.page-responsive.header-overlay > div.application-main > main > div.codespaces-hero.pt-8.overflow-hidden > div.pt-10.pb-4.pb-md-7.d-flex.flex-column.px-3.pt-8.flex-lg-column.flex-items-center.text-center > div > div > a:nth-child(1)");
   await getStarted.click();
@@ -44,7 +45,6 @@ test("Sign in to GitHub header content'", async () => {
 
 
 test("Student Developer Pack header content'", async () => {
-  page = await browser.newPage();
   await page.goto("https://education.github.com/");  
   const globalCampus = await page.$("#__layout > div > div > main > div > div > div:nth-child(1) > div > a");
   await globalCampus.click();
@@ -54,7 +54,6 @@ test("Student Developer Pack header content'", async () => {
 }, 30000);
 
 test("The Grafana Alerting team header content'", async () => {
-  page = await browser.newPage();
   await page.goto("https://github.blog/category/engineering/");  
   const team = await page.$("#term-post-70744 > div.py-4.d-flex.flex-column.flex-md-row.flex-md-row-reverse.gutter-spacious > div.col-12.col-lg-4.pt-lg-4 > h3 > a");
   await team.click();
